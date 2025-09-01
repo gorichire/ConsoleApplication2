@@ -100,5 +100,7 @@ int main() {
 	PrintAll(minHeap);
 	Pop(minHeap);
 
+	Clear(minHeap);
+	Init(minHeap);
 	PrintAll(minHeap);
 }
