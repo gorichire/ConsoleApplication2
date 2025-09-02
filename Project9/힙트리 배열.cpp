@@ -36,17 +36,15 @@ void HeapifyUp(Heap* h, int idx) {
 }
 
 void HeapifyDownRec(Heap* h, int idx) {
-	if (!h || idx < 1) return;
-	int n = idx * 2;
-	int m = n + 1;
-	int min = idx;
-	
-	if (n <= h->size && prior(h, h->arr[n], h->arr[min])) min = n;
-	if( m <= h->size && prior(h, h->arr[m], h->arr[min])) min = m;
-
-	if (min != idx) {
-		Swap(h->arr[idx], h->arr[min]);
-		HeapifyDownRec(h, min);
+	if (!h || idx < 1 || idx > h->size) return;
+	while (true) {
+		int l = idx * 2, r = l + 1;
+		int best = idx;
+		if (l <= h->size && prior(h, h->arr[l], h->arr[best])) best = l;
+		if (r <= h->size && prior(h, h->arr[r], h->arr[best])) best = r;
+		if (best == idx) break;
+		Swap(h->arr[idx], h->arr[best]);
+		idx = best;
 	}
 }
 
@@ -71,15 +69,16 @@ bool Pop(Heap* h) {
 	if (h->size > 0) HeapifyDownRec(h, 1);
 
 	return true;
-
 }
 
 void Clear(Heap* h) { if (h) h->size = 0; }
 
-void Init(Heap* h) {
+void Destroy(Heap*& h) {
 	if (!h) return;
 	delete[] h->arr;
+	h->arr = nullptr;
 	delete h;
+	h = nullptr; 
 }
 
 int main() {
@@ -91,7 +90,6 @@ int main() {
 	Push(minHeap, 20);
 	Push(minHeap, 40);
 	Push(minHeap, 50);
-	Push(minHeap, 5);
 	
 	PrintAll(minHeap);
 
@@ -101,6 +99,6 @@ int main() {
 	Pop(minHeap);
 
 	Clear(minHeap);
-	Init(minHeap);
+	Destroy(minHeap);
 	PrintAll(minHeap);
 }
