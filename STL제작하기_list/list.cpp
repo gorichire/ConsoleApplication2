@@ -1,7 +1,7 @@
 ﻿#include <iostream>
-#pragma once
-#include <cstddef>
-#include <cassert>
+
+
+
 
 // 교육용 mini::list — Step 1
 // - 이중 연결 리스트 + 양방향 반복자
@@ -18,8 +18,9 @@ namespace mini {
             T     value;
             node* prev;
             node* next;
-            node(const T& v, node* p = nullptr, node* n = nullptr)
-                : value(v), prev(p), next(n) {}
+            
+
+
         };
 
         node* head_;   // 더미(head) — 첫 요소는 head_->next
@@ -37,6 +38,8 @@ namespace mini {
             using pointer = T*;
 
             iterator() = default;
+
+
             reference operator*() const { return cur_->value; }
             pointer   operator->() const { return &cur_->value; }
 
@@ -46,6 +49,7 @@ namespace mini {
             bool operator==(const iterator& o) const { return cur_ == o.cur_; }
             bool operator!=(const iterator& o) const { return cur_ != o.cur_; }
         };
+
 
         class const_iterator {
             friend class list;
