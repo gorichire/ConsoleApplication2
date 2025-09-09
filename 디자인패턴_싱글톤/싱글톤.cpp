@@ -1,11 +1,28 @@
 #include <iostream>
+/*
+* 용어정리
+* 싱글톤
+* 객체
+* 인스턴스
+* static멤버변수(전역변수)
+* 전역변수
+* static멤버함수
+* 생성자
+* 소멸자
+* 복사생성자
+* 클래스
+* 동적할당
+* 정적할당
+*/
 
 class Singleton {
 private:
     Singleton() {
         printf("생성자 호출\n");
     }
-    ~Singleton() = delete;
+    ~Singleton() {
+        printf("소멸자 호출\n");
+    }
     Singleton(const Singleton& ref);
     static Singleton* instance;
 public:
