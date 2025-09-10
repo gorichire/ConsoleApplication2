@@ -5,17 +5,43 @@ using namespace std;
 
 class Tank {
 public:
-	virtual void Attack();
-	virtual void Move(int x, int y);
-	virtual void SwitchingMode();
+	void Attack();
+	void Move(int x, int y);
+	void SwitchingMode(Mode* mode);
 private:
-	string Mode = NULL;
+	Mode* pState = NULL;
 };
 
-class SiegeMode : Tank {
-	
+class Mode {
+public:
+	void Attack();
+	void Move(int x, int y);
 };
 
-class TankMode : Tank {
-
+class SiegeMode : Mode {
+public:
+	void Attack() {
+		cout << "attack 70" << endl;
+	};
+	void Move(int x, int y) {
+		cout << "Move 0" << endl;
+	};
 };
+
+class TankMode : Mode {
+public:
+	void Attack() {
+		cout << "attack 30" << endl;
+	};
+	void Move(int x, int y) {
+		cout << "Move "<<x<<y << endl;
+	};
+};
+
+int main() {
+
+	Tank tank;
+
+
+	return 0;
+}
