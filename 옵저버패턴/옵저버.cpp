@@ -27,6 +27,7 @@ class Medic : public Unit {
 
 class Commander {
 private:
+    // 왜 포인터로 쓰는가?
     vector<Unit*> selected;
 
 public:

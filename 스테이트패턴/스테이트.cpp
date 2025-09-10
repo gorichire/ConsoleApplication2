@@ -12,7 +12,11 @@ public:
 
 class SiegeMode : public Mode {
 public:
-	static SiegeMode& Instance() { static SiegeMode s; return s; }
+	static SiegeMode& Instance()
+	{
+		static SiegeMode state;
+		return state;
+	}
 	void Attack() override {
 		cout << "attack 70" << endl;
 	};
@@ -23,7 +27,10 @@ public:
 
 class TankMode : public Mode {
 public:
-	static TankMode& Instance() { static TankMode s; return s; }
+	static TankMode& Instance() {
+		static TankMode state; 
+		return state;
+	}
 	void Attack() override {
 		cout << "attack 30" << endl;
 	};
