@@ -49,16 +49,16 @@ public:
 };
 
 int main() {
-    Commander cmd;
+    Commander commander;
     Marin marin; Medic medic;
 
-    cmd.SelectUnit(&marin);
-    cmd.SelectUnit(&medic);
+    commander.SelectUnit(&marin);
+    commander.SelectUnit(&medic);
 
-    cmd.Move(10, 20);
+    commander.Move(10, 20);
 
-    cmd.DeselectUnit(&marin);
-    cmd.Move(0, 0);
+    commander.DeselectUnit(&marin);
+    commander.Move(0, 0);
 
     return 0;
 }
