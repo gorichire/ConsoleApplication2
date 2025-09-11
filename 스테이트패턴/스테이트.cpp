@@ -12,11 +12,6 @@ public:
 
 class SiegeMode : public Mode {
 public:
-	static SiegeMode& Instance()
-	{
-		static SiegeMode state;
-		return state;
-	}
 	void Attack() override {
 		cout << "attack 70" << endl;
 	};
@@ -27,10 +22,6 @@ public:
 
 class TankMode : public Mode {
 public:
-	static TankMode& Instance() {
-		static TankMode state; 
-		return state;
-	}
 	void Attack() override {
 		cout << "attack 30" << endl;
 	};
@@ -41,13 +32,13 @@ public:
 
 class Tank {
 public:
-	Tank() : pState(&TankMode::Instance()) {}
+	Tank(Mode* initialState) : pState(initialState) {}
 
 	void Attack() { pState->Attack(); }
 	void Move(int x, int y) { pState->Move(x, y); }
 
-	void SwitchingMode(Mode& mode) {
-		pState = &mode;
+	void SwitchingMode(Mode* mode) {
+		pState = mode;
 	}
 private:
 	Mode* pState = NULL;
@@ -55,11 +46,14 @@ private:
 
 int main() {
 
-	Tank tank;
+	TankMode  tankMode;
+	SiegeMode siegeMode;
+	Tank tank(&tankMode);
+
 	tank.Move(3, 4);
 	tank.Attack();
 
-	tank.SwitchingMode(SiegeMode::Instance()); 
+	tank.SwitchingMode(&siegeMode);
 	tank.Move(10, 20);
 	tank.Attack();
 }
