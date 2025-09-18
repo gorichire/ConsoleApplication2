@@ -14,6 +14,7 @@ class SiegeMode : public Mode {
 public:
 	void Attack() override {
 		cout << "attack 70" << endl;
+
 	};
 	void Move(int x, int y) override {
 		cout << "Move 0" << endl;
